@@ -5,7 +5,7 @@ module.exports = function (lib) {
     validator = new (jsonschema.Validator)();
   //TODO: load some prefefined schemas into validator for common data types like email and so on ...
   function extractValidationMessages(title, error) {
-    return (title ? (title + ': ') : '') + error.message;
+    return (title ? (title + ': ') : '') + error.path.join('.') + ' ' + error.message;
   }
 
   function validateSingleParam(errors, complete_schema, param_value, param_index) {
